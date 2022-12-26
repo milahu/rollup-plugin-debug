@@ -9,20 +9,26 @@ you may not need `rollup-plugin-debug` ...
 ```js
 // rollup.config.js
 
-const printFilesPlugin = {
-  // print filename (id) and code between two plugins
-  // https://github.com/rollup/rollup/issues/1215
-  transform(code, id) {
-    console.log(id);
-    console.log(code);
-    // return undefined = no change
+function printFilesPlugin(label = "") {
+  let fileIndex = 0;
+  return {
+    // print filePath and code between two plugins
+    // https://github.com/rollup/rollup/issues/1215
+    transform(code, filePath) {
+      const prefix = label ? (label + ": ") : ""
+      console.log(prefix + "-------------------------------------");
+      console.log(prefix + fileIndex + ": " + filePath);
+      console.log(code.split("\n").map((line, lineIndex) => prefix + fileIndex + ": " + lineIndex + ": " + line).join("\n"));
+      fileIndex++;
+      // return undefined = no change
+    }
   }
-};
+}
 
 export default {
   plugins: [
     thisPlugin(),
-    printFilesPlugin,
+    printFilesPlugin("this-that"),
     thatPlugin()
   ],
   // other options
