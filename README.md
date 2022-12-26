@@ -4,6 +4,8 @@ Code for debugging the flow through rollup plugins. This grew out of an ad hoc s
 
 ## simple debug
 
+you may not need `rollup-plugin-debug` ...
+
 ```js
 // rollup.config.js
 
