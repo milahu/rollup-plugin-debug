@@ -22,7 +22,6 @@
     "watch": "NODE_ENV=development rollup -c --watch",
     "clean": "rm -rf build lib docs",
     "prepublishOnly": "NODE_ENV=production npm run build",
-    "prebuild:docs": "npm install",
     "build:docs": "GRAPHVIZ_DOT=\"$(which dot)\" typedoc --out build/docs/api src/",
     "preserve": "npm run build:devtools",
     "serve": "NODE_ENV=development SERVE=true rollup -c",
